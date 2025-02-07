@@ -28,7 +28,7 @@ const Landing = ({ home, about, service, contact, reg }) => {
       {/* hero section */}
       <div
         ref={home}
-        className="w-full  flex h-screen  max-sm:flex-wrap  max-sm:pt-6 bg-[#164343]"
+        className="w-full  flex h-screen  max-sm:flex-wrap max-sm:h-[600px] max-sm:pt-6 bg-[#164343]"
       >
         {/* text side  */}
         <Padding>
@@ -37,7 +37,7 @@ const Landing = ({ home, about, service, contact, reg }) => {
               <p className="pb-4 max-sm:pb-2 max-sm:text-[12px]">
                 We provide Educational Oppotunity
               </p>
-              <h1 className="text-6xl font-semibold pb-4 max-sm:text-2xl ">
+              <h1 className="text-6xl font-semibold pb-4 max-sm:text-3xl ">
               <span className="text-[#16a571] ">UK master’s</span> degree is a smart investment for academic
               </h1>
               <p className="pb-4  max-sm:pb-3 max-sm:text-[12px]">
@@ -58,10 +58,10 @@ const Landing = ({ home, about, service, contact, reg }) => {
 
             {/* image side  */}
             <div className="w-1/2 h-full max-sm:w-full max-sm:mt-4">
-              <div className="  flex items-center justify-center w-[550px] h-full  rounded-2xl float-right max-sm:w-[250px]">
+              <div className="  flex items-center justify-center  h-full   max-sm:w-full max-sm:float-none ">
                 <img
                   src={girl}
-                  className="w-full h-full  "
+                  className=" h-full  max-sm:h-[250px]"
                   alt=""
                 />
               </div>
@@ -134,18 +134,18 @@ const Landing = ({ home, about, service, contact, reg }) => {
      
 
       {/* section 3*/}
-      <div ref={about} className="py-15 flex relative">
+      <div ref={about} className="py-15 flex relative max-sm:py-8">
         <Padding>
-          <div className="flex justify-between max-sm:flex-col">
-            <div className="space-y-6  w-[570px] ">
+          <div className="flex justify-between max-sm:flex-col max-sm:pb-5">
+            <div className="space-y-6 max-sm:space-y-3 w-[570px] max-sm:w-full">
               <p className="text-[#16a571] font-semibold text-lg">
                 why choose Us
               </p>
-              <div className="w-full space-y-6">
-                <p className="text-4xl font-bold leading-15 max-sm:text-2xl max-sm:leading-7 max-sm:w-[320px] max-[321px]:text-white ">
+              <div className="w-full space-y-6 max-sm:space-y-4 max-sm:pb-5">
+                <p className="text-4xl font-bold leading-15 max-sm:text-2xl max-sm:leading-7  ">
                   Is a 1-Year Master’s Degree in the UK a Smart Choice?
                 </p>
-                <div className="space-y-4 max-sm:text-[14px] max-sm:w-[320px]">
+                <div className="space-y-4 max-sm:text-[14px] text-[#777777] ">
                   <p>
                     As a student considering what place is appealing to study
                     for your master's is ideal. Some countries may not be the
@@ -206,23 +206,28 @@ With shorter study periods and global recognition.n"
       </div>
       {/* section contact */}
  
-        <div ref={contact} className="bg-[#164343] py-20 h-screen flex items-center relative">
-          <div className=" ">
-            <p className="text-5xl font-semibold text-white px-25  mb-10">let talk on whatapp</p>
+        <div ref={contact} className="bg-[#164343] p-20 max-sm:p-3 h-screen flex items-center justify-center max-sm:flex-col">
+       
+       
+          <div className="bg-[#E3F9F5] w-full rounded-t-full  flex pt-10 ">
+            
+            <div className=" ">
+            <img src={graduate} className="-mt-20" alt="" />
+            </div>
 
-            <div className="px-25">
+            <div className=" w-1/2 flex flex-col justify-center ">
+            <p className="text-4xl  font-semibold   mb-10 max-sm:text-[16px]">let talk on whatapp</p>
+
+            <div className=" max-sm:px-4">
               <Contact
                 icon={<FaWhatsapp />}
-                className={`text-white  text-2xl items-center`}
+                className={`  text-2xl items-center max-sm:text-lg`}
                 text="Contact us"
               />
             </div>
           </div>
-          <div className="bg-[#E3F9F5] rounded-t-full   ">
-            <div className=" ">
-            <img src={graduate} className="-mt-20" alt="" />
-            </div>
           </div>
+
         </div>
       
     </>

@@ -4,11 +4,11 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='w-full px-24 pt-24 bg-[#f5f6f7]  '>
+    <div className='w-full pt-24 px-24 max-sm:p-4 bg-[#f5f6f7]  '>
       <div className='flex gap-x-30 border-b-1 border-gray-500 pb-20 flex-wrap' >
       <div className=''>
             <div className='w-30 mb-5 cursor-pointer'></div>
-            <p className='w-80 mb-5  text-gray-700 font-normal'> Each demo built with Teba will look different. you can customize almost anything it the appearance of you website with only a few</p>
+            <p className='w-80 mb-5  text-gray-700 font-normal max-sm:w-full'> Each demo built with Teba will look different. you can customize almost anything it the appearance of you website with only a few</p>
             <div className='flex gap-3'>
                 <div className='p-3 text-gray-800 bg-white w-12 rounded-md hover:bg-[#039003] hover:text-white text-center'>p</div>
                 <div className='p-3 text-gray-800 bg-white w-12 rounded-md hover:bg-[#039003] hover:text-white text-center'>p</div>
