@@ -6,7 +6,14 @@ import { useState } from "react";
 
 const Header = ({homeScroll, aboutScroll,serviceScroll,contactScroll, enroll }) => {
 
-  const [state, setState] = useState(false) 
+  const [state, setState] = useState() 
+
+  const handleState = ()=>{
+    setState(!state)
+  }
+  const handleStateClose = ()=>{
+    setState(false)
+  }
   return (
     <div className=" bg-white sticky top-0 shadow-lg w-full text-sm  py-4 max-sm:p-2 z-50 ">
       <Padding>
@@ -17,18 +24,22 @@ const Header = ({homeScroll, aboutScroll,serviceScroll,contactScroll, enroll }) 
           </div>
 
           {/* nav */}
-          <nav className="flex  items-center w-74 gap-10 max-sm:bg-red-200 max-sm:absolute max-sm:top-13 max-sm:w-50  max-sm:right-0 max-sm:p-3  max-sm:h-screen">
-            <ul className="flex gap-2  justify-between w-full font-semibold cursor-pointer  flex-col">
-              <li onClick={homeScroll}>Home</li>
-              <li onClick={aboutScroll}>About</li>
-              <li onClick={contactScroll}>
+        {state && (
+          <div onClick={handleStateClose} className={`max-sm:w-full max-sm:h-screen max-sm:bg-[#00000065] max-sm:absolute max-sm:top-12  max-sm:right-0 `}>
+              <nav className="max-sm:flex max-sm:float-right items-center w-74 gap-10  max-sm:text-center max-sm:top-12 max-sm:w-50   max-sm:h-[200px] max-sm:rounded-b-md max-sm:bg-white max-sm:shadow-lg">
+            <ul className="flex gap-2  justify-between w-full font-semibold cursor-pointer  max-sm:flex-col">
+              <li className="max-sm:w-full max-sm:p-2 border-b border-gray-200  max-sm:hover:bg-[#16a571]" onClick={homeScroll}>Home</li>
+              <li className="max-sm:w-full max-sm:p-2 border-b border-gray-200 max-sm:hover:bg-[#16a571]" onClick={aboutScroll}>About</li>
+              <li className="max-sm:w-full max-sm:p-2 border-b border-gray-200 max-sm:hover:bg-[#16a571]" onClick={contactScroll}>
                 Contact
               </li>
-              <li onClick={serviceScroll} >
+              <li className="max-sm:w-full max-sm:p-2  max-sm:hover:bg-[#16a571]" onClick={serviceScroll} >
                 Service
               </li>
             </ul>
           </nav>
+          </div>
+        )}
 
           {/* button */}
           <div className="flex items-center">
@@ -40,7 +51,7 @@ const Header = ({homeScroll, aboutScroll,serviceScroll,contactScroll, enroll }) 
               onclick={enroll}
             />
             
-            <div className="text-lg cursor-pointer bg-[#16a571] text-white p-2 font-semibold rounded-sm hidden max-sm:flex">
+            <div className="text-lg cursor-pointer bg-[#16a571] text-white p-2 font-semibold rounded-sm hidden max-sm:flex" onClick={handleState}>
               <RxHamburgerMenu />
             </div>
           </div>

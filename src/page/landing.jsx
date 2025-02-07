@@ -209,14 +209,14 @@ With shorter study periods and global recognition.n"
         <div ref={contact} className="bg-[#164343] p-20 max-sm:p-3 h-screen flex items-center justify-center max-sm:flex-col">
        
        
-          <div className="bg-[#E3F9F5] w-full rounded-t-full  flex pt-10 ">
+          <div className="bg-[#E3F9F5] w-full rounded-t-full max-sm:flex-col  flex pt-10 ">
             
             <div className=" ">
-            <img src={graduate} className="-mt-20" alt="" />
+            <img src={graduate} className="-mt-20 max-sm:m-0" alt="" />
             </div>
 
-            <div className=" w-1/2 flex flex-col justify-center ">
-            <p className="text-4xl  font-semibold   mb-10 max-sm:text-[16px]">let talk on whatapp</p>
+            <div className=" w-1/2 max-sm:w-full flex flex-col justify-center max-sm:items-center">
+            <p className="text-4xl  font-semibold  max-sm:my-2 max-sm:px-3 mb-10 max-sm:text-[25px]">let talk on whatapp</p>
 
             <div className=" max-sm:px-4">
               <Contact
