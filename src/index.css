@@ -9,7 +9,7 @@
 
 /* Apply the global font */
 @theme {
-  --font-display: "Montserrat", "san-sarif"; 
+  --font-display: "Montserrat"; 
 }
   
   body {
