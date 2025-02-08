@@ -35,7 +35,7 @@ return (
         {/* text side  */}
         <Padding>
           <div className="w-full flex h-full   items-center max-sm:flex-col max-sm:text-center ">
-            <div className="w-1/2  text-white max-sm:w-full max-sm:  ">
+            <div className="w-1/2  text-white max-sm:w-full max-sm:h-1/2  ">
               <p className="pb-4 max-sm:pb-2 max-sm:text-[12px]">
                 We provide Educational Oppotunity
               </p>
@@ -61,11 +61,11 @@ return (
             </div>
 
             {/* image side  */}
-            <div className="w-1/2 h-full max-sm:w-full max-sm:mt-4">
-              <div className="  flex items-center justify-center  h-full   max-sm:w-full max-sm:float-none ">
+            <div className="w-1/2 h-full max-sm:h-1/2 max-sm:w-full ">
+              <div className="  flex items-center justify-center  h-full max-sm:h-full  max-sm:w-full max-sm:float-none ">
                 <img
                   src={girl}
-                  className=" h-full  max-sm:h-[250px]"
+                  className=" h-full  max-sm:h-full"
                   alt=""
                 />
               </div>

@@ -1,4 +1,3 @@
-
 import { RxHamburgerMenu } from "react-icons/rx";
 import Button from "../component/buttom";
 import Padding from "../layout/Padding";
@@ -6,7 +5,7 @@ import { useState } from "react";
 
 const Header = ({homeScroll, aboutScroll,serviceScroll,contactScroll, enroll }) => {
 
-  const [state, setState] = useState() 
+  const [state, setState] = useState(false) 
 
   const handleState = ()=>{
     setState(!state)
@@ -25,8 +24,8 @@ const Header = ({homeScroll, aboutScroll,serviceScroll,contactScroll, enroll }) 
 
           {/* nav */}
         {state && (
-          <div onClick={handleStateClose} className={`max-sm:w-full  max-sm:h-screen max-sm:bg-[#00000065] max-sm:absolute max-sm:top-12  max-sm:right-0 mobil-nav `}>
-              <nav className="max-sm:flex max-sm:float-right items-center w-74 gap-10  max-sm:text-center max-sm:top-12 max-sm:w-50   max-sm:h-[200px] max-sm:rounded-b-md max-sm:bg-white max-sm:shadow-lg">
+          <div onClick={handleStateClose} className={`max-sm:w-full  max-sm:h-screen max-sm:bg-[#27272765] max-sm:absolute max-sm:top-12  max-sm:right-0 mobil-nav `}>
+              <nav className=" transition-all duration-700 ease-in-out max-sm:flex max-sm:float-right items-center w-74 gap-10  max-sm:text-center max-sm:top-20 max-sm:w-55   max-sm:h-[220px] max-sm:rounded-b-md max-sm:bg-white max-sm:shadow-lg">
             <ul className="flex gap-2  justify-between w-full font-semibold cursor-pointer  max-sm:flex-col">
               <li className="max-sm:w-full max-sm:p-2 max-sm:border-b max-sm:border-gray-200  max-sm:hover:bg-[#16a571]" onClick={homeScroll}>Home</li>
               <li className="max-sm:w-full max-sm:p-2 max-sm:border-b max-sm:border-gray-200 max-sm:hover:bg-[#16a571]" onClick={aboutScroll}>About</li>
