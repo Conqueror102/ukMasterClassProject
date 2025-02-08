@@ -11,7 +11,7 @@ const Contact = ({ icon, className, text }) => {
         </div>
         <div >
           <p className="text[#777777] max-sm:text-[14px]">{text}</p>
-          <p className="text-md font-semibold max-sm:text-[15px]" >080 456 789 00</p>
+          <p className="text-md font-semibold max-sm:text-[15px]" >+447440608000</p>
         </div>
       </div>
     </>

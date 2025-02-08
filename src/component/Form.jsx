@@ -136,7 +136,7 @@ const Form = () => {
 
             <div className="mt-6 flex justify-end  max-sm:justify-center ">
               <button className="bg-[#16a571] text-white px-6 py-3 max-sm:w-full rounded-lg text-lg max-sm:text-[15px] max-sm:py-3 font-medium hover:bg-green-700 transition">
-                Submit Documents
+                Submit 
               </button>
             </div>
           </form>

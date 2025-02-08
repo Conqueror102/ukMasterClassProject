@@ -1,4 +1,3 @@
-// import React, { useRef } from "react";
 import Button from "../component/buttom";
 import Padding from "../layout/Padding";
 import girl from "../assets/girl in hero.png";
@@ -9,7 +8,6 @@ import icon2 from "../assets/about-icon-02.png";
 import Services from "../component/Services";
 import { FaPassport } from "react-icons/fa6";
 import Contact from "../component/contact";
-import student from "../assets/guyStudent.png";
 import Learn from "../component/learn";
 import { SiFuturelearn } from "react-icons/si";
 import { GiReceiveMoney } from "react-icons/gi";
@@ -17,17 +15,21 @@ import { GiWorld } from "react-icons/gi";
 import { FaBusinessTime } from "react-icons/fa";
 import graduate from "../assets/girlGraduate.png";
 import { FaWhatsapp } from "react-icons/fa";
-
+// import React, { useRef } from "react";
 import Form from "../component/Form";
 
-const Landing = ({ home, about, service, contact, reg }) => {
-  
+const Landing = ({ home, about, service, contact, reg  }) => {
+  const phoneNumber = "+447440608000"
 
-  return (
+
+const registerSect = () => {
+  reg.current?.scrollIntoView({ behavior: "smooth" });
+};  
+return (
     <>
       {/* hero section */}
       <div
-        ref={home}
+        ref={home} 
         className="w-full  flex h-screen  max-sm:flex-wrap max-sm:h-[600px] max-sm:pt-6 bg-[#164343]"
       >
         {/* text side  */}
@@ -46,7 +48,9 @@ const Landing = ({ home, about, service, contact, reg }) => {
                 Tempora numquam soluta,
               </p>
               <div className="w-full space-x-6 ">
+              
                 <Button
+                    onclick={registerSect}
                   text="Register Now "
                   bg="bg-[#16a571] "
                   color="text-white"
@@ -121,10 +125,10 @@ const Landing = ({ home, about, service, contact, reg }) => {
 
       {/* section 2 */}
       <div ref={reg} className="w-full bg-[#E3F9F5] py-15 max-sm:py-9" >
-        <p className="text-4xl mb-15 max-sm:mb-10 text-center font-semibold max-sm:text-2xl">
+        <p  className="text-4xl mb-15 max-sm:mb-10 text-center font-semibold max-sm:text-2xl">
           Enroll for Registration Now!
         </p>
-        <Padding>
+        <Padding >
          <Form/>
         </Padding>
       </div>
@@ -176,7 +180,7 @@ const Landing = ({ home, about, service, contact, reg }) => {
               </div>
             </div>
 
-            <div className="w-[500px] max-sm:w-full ">
+            <div  className="w-[500px] max-sm:w-full ">
               <Learn
                 icon={<SiFuturelearn />}
                 bold="Fast learning experience"
@@ -205,7 +209,7 @@ With shorter study periods and global recognition.n"
         </Padding>
       </div>
       {/* section contact */}
- 
+
         <div ref={contact} className="bg-[#164343] p-20 max-sm:p-3 h-screen flex items-center justify-center max-sm:flex-col">
        
        
@@ -219,11 +223,13 @@ With shorter study periods and global recognition.n"
             <p className="text-4xl  font-semibold  max-sm:my-2 max-sm:px-3 mb-10 max-sm:text-[25px]">let talk on whatapp</p>
 
             <div className=" max-sm:px-4">
+              <a href={`http://wa.me/${phoneNumber}`}>
               <Contact
                 icon={<FaWhatsapp />}
                 className={`  text-2xl items-center max-sm:text-lg`}
                 text="Contact us"
               />
+              </a>
             </div>
           </div>
           </div>
