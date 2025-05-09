@@ -28,7 +28,8 @@ const App = () => {
     <>
       <Header homeScroll={handHomeScroll } aboutScroll={handAboutScroll} serviceScroll={handServiceScroll} contactScroll={handContactScroll} enroll={handRegisterScroll}/>
       <Landing home={home} about={ about} service={service} contact={contact} reg={register} />
-      <Footer />
+      <Footer home={home} about={about} service={service} reg={register} />
+
     </>
   );
 };
