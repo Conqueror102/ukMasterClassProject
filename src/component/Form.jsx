@@ -18,6 +18,9 @@ const schema = Yup.object().shape({
 const Form = () => {
   const [files, setFiles] = useState({});
   const [loading, setLoading] = useState(false);
+  const [uploadingToCloudinary, setUploadingToCloudinary] = useState({}); // Track Cloudinary uploads
+  const [cloudinaryUrls, setCloudinaryUrls] = useState({}); // Store Cloudinary URLs
+  const [registrationResult, setRegistrationResult] = useState(null); // To store backend response
 
   const {
     register,
@@ -35,39 +38,89 @@ const Form = () => {
     }));
   };
 
-  const onSubmit = async (data) => {
-    const formData = new FormData();
-    setLoading(true);
+  const uploadToCloudinary = async (file, label) => {
+    setUploadingToCloudinary((prev) => ({ ...prev, [label]: true }));
+    try {
+      // **Important:** Replace with your actual backend URL if different
+      const backendBaseURL = "https://ukmasterclassbackend.onrender.com";
+      const signatureResponse = await axios.get(`${backendBaseURL}/api/cloudinary/signature`);
+      const signatureData = signatureResponse.data;
 
-    // Text data
-    for (const key in data) {
-      formData.append(key, data[key]);
+      console.log("Upload Preset from Backend:", signatureData.upload_preset); // Check the preset
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("timestamp", signatureData.timestamp);
+      formData.append("upload_preset", signatureData.upload_preset);
+      formData.append("folder", signatureData.folder);
+      formData.append("signature", signatureData.signature);
+      formData.append("cloud_name", signatureData.cloud_name);
+      formData.append("api_key", signatureData.api_key);
+
+      const cloudinaryResponse = await axios.post(
+        `https://api.cloudinary.com/v1_1/${signatureData.cloud_name}/raw/upload`,
+        formData
+      );
+
+      setCloudinaryUrls((prev) => ({ ...prev, [label]: cloudinaryResponse.data.secure_url }));
+      setUploadingToCloudinary((prev) => ({ ...prev, [label]: false }));
+      return cloudinaryResponse.data.secure_url;
+    } catch (error) {
+      console.error(`Error uploading ${label} to Cloudinary:`, error);
+      setUploadingToCloudinary((prev) => ({ ...prev, [label]: false }));
+      Swal.fire({
+        title: "Error!",
+        text: `Failed to upload ${label}. Please try again.`,
+        icon: "error",
+        confirmButtonColor: "#d33",
+      });
+      return null;
     }
+  };
 
-    // Files
-    if (files["Bsc Certificate"]?.[0]) formData.append("bscCertificate", files["Bsc Certificate"][0]);
-    if (files["Transcript"]?.[0]) formData.append("transcript", files["Transcript"][0]);
-    if (files["Wassce Certificate (Grade for English Language must be C6 or better)"]?.[0])
-      formData.append("wassceCertificate", files["Wassce Certificate (Grade for English Language must be C6 or better)"][0]);
-    if (files["Curriculum Vitae"]?.[0]) formData.append("cv", files["Curriculum Vitae"][0]);
-    if (files["Personal Statement (one page)"]?.[0]) formData.append("personalStatement", files["Personal Statement (one page)"][0]);
-    if (files["Biodata page of passport (must have at least 6 months validity)"]?.[0])
-      formData.append("passportBiodata", files["Biodata page of passport (must have at least 6 months validity)"][0]);
+  const onSubmit = async (data) => {
+    setLoading(true);
+    const uploadedUrls = {};
 
-    if (files["2 Reference Letters (one must be academic)"]?.[0])
-      formData.append("referenceLetter1", files["2 Reference Letters (one must be academic)"][0]);
-    if (files["2 Reference Letters (one must be academic)"]?.[1])
-      formData.append("referenceLetter2", files["2 Reference Letters (one must be academic)"][1]);
+    // Upload files to Cloudinary
+    const uploadPromises = Object.keys(files).map(async (label) => {
+      if (files[label]?.[0]) {
+        const url = await uploadToCloudinary(files[label][0], label);
+        if (url) {
+          uploadedUrls[label] = url;
+        }
+      } else if (files[label]?.length > 0) { // Handle multiple files (reference letters)
+        const urls = await Promise.all(
+          files[label].map((file) => uploadToCloudinary(file, label))
+        );
+        if (urls.every(url => url)) {
+          uploadedUrls[label] = urls; // Store array of URLs for multiple files
+        }
+      }
+    });
+
+    await Promise.all(uploadPromises);
 
     try {
-      await axios.post("https://ukmasterclassbackend.onrender.com/api/users/register", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      const backendData = {
+        ...data,
+        documents: {
+          bscCertificate: uploadedUrls["Bsc Certificate"],
+          transcript: uploadedUrls["Transcript"],
+          wassceCertificate: uploadedUrls["Wassce Certificate (Grade for English Language must be C6 or better)"],
+          cv: uploadedUrls["Curriculum Vitae"],
+          personalStatement: uploadedUrls["Personal Statement (one page)"],
+          passportBiodata: uploadedUrls["Biodata page of passport (must have at least 6 months validity)"],
+          referenceLetter1: uploadedUrls["2 Reference Letters (one must be academic)"]?.[0],
+          referenceLetter2: uploadedUrls["2 Reference Letters (one must be academic)"]?.[1],
         },
-      });
+      };
 
+      const response = await axios.post("https://ukmasterclassbackend.onrender.com/api/users/register", backendData);
+
+      console.log('Backend Registration Success Response:', response.data); // **CHECK THIS LOG**
+      setRegistrationResult(response.data);
       setLoading(false);
-
       Swal.fire({
         title: "Success!",
         text: "Form submitted successfully!",
@@ -75,6 +128,7 @@ const Form = () => {
         confirmButtonColor: "#16a571",
       });
     } catch (error) {
+      console.error("Error submitting form to backend:", error);
       setLoading(false);
       Swal.fire({
         title: "Error!",
@@ -161,9 +215,17 @@ const Form = () => {
                     onChange={(e) => handleFileChange(e, label)}
                   />
                 </label>
-                {files[label] && (
+                {files[label]?.[0] && !uploadingToCloudinary[label] && (
                   <p className="text-sm text-gray-600 mt-2">
                     {files[label].map((f) => f.name).join(", ")}
+                  </p>
+                )}
+                {uploadingToCloudinary[label] && (
+                  <p className="text-sm text-blue-500 mt-2">Uploading {label}...</p>
+                )}
+                {cloudinaryUrls[label] && (
+                  <p className="text-sm text-green-600 mt-2">
+                    {label} uploaded: {cloudinaryUrls[label].substring(0, 20)}...
                   </p>
                 )}
               </div>
@@ -186,9 +248,18 @@ const Form = () => {
                   }
                 />
               </label>
-              {files["2 Reference Letters (one must be academic)"]?.length > 0 && (
+              {files["2 Reference Letters (one must be academic)"]?.length > 0 && !uploadingToCloudinary["2 Reference Letters (one must be academic)"] && (
                 <p className="text-sm text-gray-600 mt-2">
                   {files["2 Reference Letters (one must be academic)"].map((f) => f.name).join(", ")}
+                </p>
+              )}
+              {uploadingToCloudinary["2 Reference Letters (one must be academic)"] && (
+                <p className="text-sm text-blue-500 mt-2">Uploading Reference Letters...</p>
+              )}
+              {cloudinaryUrls["2 Reference Letters (one must be academic)"]?.length > 0 && (
+                <p className="text-sm text-green-600 mt-2">
+                  Reference Letters uploaded:{" "}
+                  {cloudinaryUrls["2 Reference Letters (one must be academic)"].map((url) => url.substring(0, 20) + "...").join(", ")}
                 </p>
               )}
             </div>
@@ -198,33 +269,32 @@ const Form = () => {
           <div className="mt-6 flex justify-end max-sm:justify-center">
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || Object.values(uploadingToCloudinary).some(Boolean)}
               className="bg-[#16a571] text-white px-6 py-3 max-sm:w-full rounded-lg text-lg max-sm:text-[15px] max-sm:py-3 font-medium hover:bg-green-700 transition"
             >
               {loading && (
                 <svg
-                className="animate-spin h-5 w-5 mr-2 text-white inline-block"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                ></path>
-              </svg>
-              
+                  className="animate-spin h-5 w-5 mr-2 text-white inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
               )}
-              {loading ? "Loading....." :" Submit"}
+              {loading ? "Loading....." : " Submit"}
             </button>
           </div>
         </form>
