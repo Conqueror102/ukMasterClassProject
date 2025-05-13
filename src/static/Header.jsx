@@ -18,8 +18,11 @@ const Header = ({homeScroll, aboutScroll,serviceScroll,contactScroll, enroll }) 
       <Padding>
         {/* logo */}
         <div className="flex justify-between items-center ">
-          <div className="cursor-pointer w-25 flex items-center max-sm:w-16">
+          <div className="cursor-pointer  flex items-center max-sm:w-16">
             <img className=" " src="" alt="" />
+            <h1 className="text-2xl font-bold text-[#164343] max-sm:text-lg">
+              <span className="text-[#16a571]">WAS-</span> afrik
+            </h1>
           </div>
           {/* nav for desktop */}
           <nav className=" items-center w-74 gap-10  max-md:hidden  ">
