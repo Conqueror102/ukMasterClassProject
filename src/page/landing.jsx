@@ -3,13 +3,72 @@ import Padding from "../layout/Padding";
 import girl from "../assets/girl in hero.png";
 import Contact from "../component/contact";
 import { SiFuturelearn } from "react-icons/si"
-import { GiReceiveMoney, GiWorld } from "react-icons/gi"
-import { FaBusinessTime, FaQuoteLeft, FaArrowRight } from "react-icons/fa"
+import { GiReceiveMoney, GiWorld, GiAirplaneDeparture } from "react-icons/gi"
+import { FaBusinessTime } from "react-icons/fa"
+import { FaRegHandshake } from "react-icons/fa6";
+import { MdOutlineVerifiedUser } from "react-icons/md";
+import { HiOutlineUserGroup } from "react-icons/hi2";
 import { FaWhatsapp, FaGlobe, FaGraduationCap, FaBriefcase, FaDollarSign } from "react-icons/fa";
 import graduate from "../assets/girlGraduate.png";
 import Form from "../component/Form";
+import { LuFileSearch, LuUserCheck } from "react-icons/lu";
 
 const Landing = ({ home, about, service, contact, reg }) => {
+
+ const features = [
+  {
+    icon: <MdOutlineVerifiedUser className="text-green-600 text-2xl" />,
+    title: "Expert Guidance You Can Trust",
+    description: "Years of experience helping students navigate the UK study and visa process with ease.",
+  },
+  {
+    icon: <GiAirplaneDeparture className="text-green-600 text-2xl" />,
+    title: "End-to-End Support",
+    description: "From application to arrival — including visa, flights, accommodation, and job advice.",
+  },
+  {
+    icon: <GiReceiveMoney className="text-green-600 text-2xl" />,
+    title: "Affordable Student Packages",
+    description: "We prioritize your budget with honest, transparent pricing and exclusive student deals.",
+  },
+  {
+    icon: <LuFileSearch className="text-green-600 text-2xl" />,
+    title: "Up-to-Date Visa Knowledge",
+    description: "Stay compliant and confident — we’re always informed on the latest embassy requirements.",
+  },
+  {
+    icon: <FaRegHandshake className="text-green-600 text-2xl" />,
+    title: "One-on-One Personalized Service",
+    description: "Every student is different — our support is tailored just for you.",
+  },
+  {
+    icon: <LuUserCheck className="text-green-600 text-2xl" />,
+    title: "Real Student Success Stories",
+    description: "Join hundreds of students who’ve made it to the UK successfully with our help.",
+  },
+  {
+    icon: <SiFuturelearn className="text-green-600 text-2xl" />,
+    title: "Fast Learning Experience",
+    description: "Intensive programs condense two years of study into one, ideal for career-driven students.",
+  },
+  {
+    icon: <GiReceiveMoney className="text-green-600 text-2xl" />,
+    title: "Save Time and Money",
+    description: "Shorter tuition and living expenses help reduce financial burden.",
+  },
+  {
+    icon: <GiWorld className="text-green-600 text-2xl" />,
+    title: "Access World Class Universities",
+    description: "Universities like Oxford and Cambridge enhance career prospects globally.",
+  },
+  {
+    icon: <FaBusinessTime className="text-green-600 text-2xl" />,
+    title: "Job Placement After Study",
+    description: "Strong career services and a diverse job market improve post-graduation employment chances.",
+  },
+];
+
+
   const phoneNumber = "+447440608000";
 
   const registerSect = () => {
@@ -28,16 +87,14 @@ const Landing = ({ home, about, service, contact, reg }) => {
           <div className="w-full flex h-full items-center max-sm:flex-col max-sm:text-center ">
             <div className="w-1/2 text-white max-sm:w-full max-sm:h-1/2  ">
               <p className="pb-4 max-sm:pb-2 max-sm:text-[12px]">
-                We provide Educational Oppotunity
+                Shape Your Future in the UK
               </p>
               <h1 className="text-6xl font-semibold pb-4 max-sm:text-3xl ">
-                <span className="text-[#16a571]">UK master’s</span> degree is a
-                smart investment for academic
+                <span className="text-[#16a571]">Study and work in the UK — </span> we’ll guide you every step of the way
               </h1>
               <p className="pb-4 max-sm:pb-3 max-sm:text-[12px]">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Tempora numquam soluta, amet consectetur adipisicing elit.
-                Tempora numquam soluta,
+               Access top universities, explore flexible job opportunities, and get real-time help with your application process — all in one platform.
+
               </p>
               <div className="w-full space-x-6 ">
                 <Button
@@ -68,12 +125,11 @@ const Landing = ({ home, about, service, contact, reg }) => {
               <FaGlobe className="h-6 w-6 text-green-600" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Study Abroad with Confidence
+              Your Trusted Partner for a Smooth UK Journey
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Planning to study in a new country? Let our experienced travel and
-              visa agents make the process stress-free, affordable, and
-              reliable.
+             Dreaming of studying in the UK? Let our expert travel and visa agents handle the hard part. We make the process simple, affordable, and stress-free — so you can focus on your future.
+
             </p>
           </div>
 
@@ -85,9 +141,8 @@ const Landing = ({ home, about, service, contact, reg }) => {
               </div>
               <h3 className="text-xl font-bold mb-2">Accurate Visa Guidance</h3>
               <p className="text-gray-600">
-                Every country has its own visa requirements for international
-                students. We stay updated with all embassy regulations so you
-                get step-by-step support and avoid costly mistakes.
+                Each country has unique visa requirements for international students — and missing a step can be costly. Our experts stay up-to-date with embassy regulations to provide you with clear, step-by-step support from start to finish.
+
               </p>
             </div>
 
@@ -100,9 +155,7 @@ const Landing = ({ home, about, service, contact, reg }) => {
                 Personalized & Reliable Support
               </h3>
               <p className="text-gray-600">
-                From flight booking to accommodation and visa application, we
-                provide one-on-one support to ensure you're fully prepared
-                before takeoff.
+                From visa application to flight booking and accommodation, we offer dedicated one-on-one guidance to make your transition smooth and stress-free. Your journey starts with a team that truly cares.
               </p>
             </div>
 
@@ -113,9 +166,8 @@ const Landing = ({ home, about, service, contact, reg }) => {
               </div>
               <h3 className="text-xl font-bold mb-2">Student-Friendly Prices</h3>
               <p className="text-gray-600">
-                We work with trusted partners to give you the best deals on
-                flights, accommodation, and travel insurance. Everything is
-                upfront—no hidden costs, just honest pricing.
+                We partner with reliable providers to offer you the best deals on flights, accommodation, and travel insurance — all tailored for student budgets. No hidden fees, just honest pricing you can trust.
+
               </p>
             </div>
           </div>
@@ -136,133 +188,46 @@ const Landing = ({ home, about, service, contact, reg }) => {
       <div ref={about} className="py-15 flex relative max-sm:py-8">
         <Padding>
         <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left Column - Main Content */}
-          <div className="space-y-8">
-            <div>
-              <span className="text-green-600 font-semibold text-lg inline-block pb-2">WHY CHOOSE US</span>
-              <h2 className="text-4xl font-bold leading-tight text-gray-900 mb-6">
-                Is a 1-Year Master's Degree in the UK a Smart Choice?
+           <div>
+              <span className="text-green-600 font-semibold text-lg inline-block pb-2">WHY CHOOSE US?</span>
+              <h2 className="text-4xl font-bold leading-tight text-gray-900 ">
+                Your Success Abroad Starts With the Right Support
               </h2>
+              <p className="mb-6">We don’t just send you abroad — we set you up for success.
+</p>
             </div>
-
-            {/* Featured Quote */}
-            <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-500 my-8">
-              <div className="flex items-start">
-                <FaQuoteLeft className="text-green-400 text-3xl mr-4 mt-1" />
-                <p className="text-lg font-medium text-gray-700 italic">
-                  "Completing a master's degree in only a year is achievable in the UK, making it both convenient and
-                  cost-effective."
-                </p>
-              </div>
+        <div className="">
+          
+          <div className="space-y-8">
+           
+    <div className="grid  grid-cols-1 lg:grid-cols-2 gap-10">
+      {features.map((feature, index) => (
+        <div key={index} className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <div className="flex items-start">
+            <div className="bg-green-50 p-3 rounded-lg mr-4">
+              {feature.icon}
             </div>
-
-            {/* Key Points with Icons */}
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <div className="bg-green-100 p-2 rounded-full mr-4 mt-1">
-                  <FaArrowRight className="text-green-600 text-sm" />
-                </div>
-                <p className="text-gray-700">
-                  As a student considering what place is appealing to study for your master's is ideal. Some countries
-                  may not be the right place for you to study.
-                </p>
-              </div>
-
-              <div className="flex items-start">
-                <div className="bg-green-100 p-2 rounded-full mr-4 mt-1">
-                  <FaArrowRight className="text-green-600 text-sm" />
-                </div>
-                <p className="text-gray-700">
-                  The UK is an appealing destination for immigrants seeking high quality education, as evident when you
-                  check the top ranking universities in the world.
-                </p>
-              </div>
-
-              <div className="flex items-start">
-                <div className="bg-green-100 p-2 rounded-full mr-4 mt-1">
-                  <FaArrowRight className="text-green-600 text-sm" />
-                </div>
-                <p className="text-gray-700">
-                  Taking into consideration the convenience and the cost effectiveness, it's an attractive option for
-                  many international students.
-                </p>
-              </div>
+            <div>
+              <h3 className="font-bold text-xl text-gray-900 mb-2">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
             </div>
+          </div>
+        </div>
+      ))}
 
             {/* Highlighted Conclusion */}
             <div className="mt-8 bg-gradient-to-r from-green-50 to-white p-6 rounded-lg">
               <h3 className="text-xl font-bold text-gray-900 mb-3">Why It's Worth Considering</h3>
               <p className="text-gray-700">
-                This article seeks to discuss why pursuing a 1-year master's degree in the UK could be one of the best
-                decisions you have made for yourself, offering both academic excellence and career advancement.
+                Planning to study abroad is a big step — and choosing the UK can be a game-changer. This platform is designed to make your journey smoother, more affordable, and fully supported at every stage. From expert visa guidance to affordable travel plans and job support while studying, we help you unlock opportunities that set you up for long-term success — both academically and professionally.
+
               </p>
             </div>
+    </div>
+           
           </div>
 
-          {/* Right Column - Benefits */}
-          <div className="space-y-8">
-            {/* Benefit Cards */}
-            <div className="grid gap-8">
-              {/* Fast Learning Experience */}
-              <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="bg-green-50 p-3 rounded-lg mr-4">
-                    <SiFuturelearn className="text-green-600 text-2xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-2">Fast learning experience</h3>
-                    <p className="text-gray-600">
-                      Intensive programs condense two years of study into one, ideal for career-driven students.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Save Time and Money */}
-              <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="bg-green-50 p-3 rounded-lg mr-4">
-                    <GiReceiveMoney className="text-green-600 text-2xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-2">Save time and money</h3>
-                    <p className="text-gray-600">Shorter tuition and living expenses help reduce financial burden.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* World Class Universities */}
-              <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="bg-green-50 p-3 rounded-lg mr-4">
-                    <GiWorld className="text-green-600 text-2xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-2">Access world class universities</h3>
-                    <p className="text-gray-600">
-                      Universities like Oxford and Cambridge enhance career prospects globally.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Job Placement */}
-              <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="bg-green-50 p-3 rounded-lg mr-4">
-                    <FaBusinessTime className="text-green-600 text-2xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-2">Job placement after study</h3>
-                    <p className="text-gray-600">
-                      Strong career services and a diverse job market improve post-graduation employment chances.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        
         </div>
       </div>
         </Padding>
