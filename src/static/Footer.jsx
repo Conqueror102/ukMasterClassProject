@@ -14,8 +14,11 @@ const Footer = ({ home, about, service, reg }) => {
       <div className="flex gap-x-30 border-b-1 border-gray-500 pb-20 max-sm:pb-10 flex-wrap">
         {/* Intro section */}
         <div>
-          <div className="w-30 mb-5 cursor-pointer text-2xl font-bold text-[#164343]">
-            UK MasterClass
+          <div className=" mb-5 cursor-pointer text-2xl font-bold text-[#164343]">
+             <h1 className="text-2xl font-bold text-[#164343] max-sm:text-lg">
+              <span className="text-[#16a571]">WAS-</span> afrik
+              <span className="text-[#16a571]">UK</span>
+            </h1>
           </div>
           <p className="w-80 mb-5 text-gray-700 font-normal max-sm:w-full">
             We help students secure UK Master’s admission, visa support, and relocation guidance with ease, clarity, and confidence.
