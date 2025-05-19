@@ -21,7 +21,7 @@ const Header = ({homeScroll, aboutScroll,serviceScroll,contactScroll, enroll }) 
           <div className="cursor-pointer  flex items-center max-sm:w-16">
             <img className=" " src="" alt="" />
             <h1 className="text-2xl font-bold text-[#164343] max-sm:text-lg">
-              <span className="text-[#16a571]">WAS-</span> afrik
+              <span className="text-[#16a571]">WAS-</span>afrik
               <span className="text-[#16a571]">UK</span>
             </h1>
           </div>

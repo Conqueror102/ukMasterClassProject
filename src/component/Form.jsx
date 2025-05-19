@@ -12,7 +12,8 @@ const schema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   number: Yup.string().required("Phone number is required"),
   countryOfOrigin: Yup.string().required("Country is required"),
-  travellingTo: Yup.string().required("Destination is required"),
+  travellingTo: Yup.string().required("Destination is required")
+    .notOneOf(['Travelling To', 'travelling', ''], 'Please Select a valid destination'),
 });
 
 const Form = () => {
@@ -158,7 +159,7 @@ const Form = () => {
                   type={type}
                   placeholder={placeholder}
                   {...register(name)}
-                  className="p-3 max-sm:p-2 border rounded-sm border-[#16a571] w-full"
+                  className="p-3 max-sm:p-2 border rounded-sm border-[#16a571] w-full outline-none"
                 />
                 {errors[name] && <p className="text-red-500 text-sm">{errors[name].message}</p>}
               </div>
@@ -168,9 +169,9 @@ const Form = () => {
             <div>
               <select
                 {...register("countryOfOrigin")}
-                className="p-3 max-sm:p-2 border rounded-sm border-[#16a571] w-full"
+                className="p-3 max-sm:p-2 border rounded-sm border-[#16a571] w-full outline-none"
               >
-                <option value="">Select Country</option>
+                <option value="" disabled className="text-gray-500 italic">--Select Country--</option>
                 <option value="Nigeria">Nigeria</option>
               </select>
               {errors.countryOfOrigin && (
@@ -181,10 +182,14 @@ const Form = () => {
             <div>
               <select
                 {...register("travellingTo")}
-                className="p-3 border rounded-sm border-[#16a571] w-full"
+                className="p-3 border rounded-sm border-[#16a571] w-full outline-none"
               >
-                <option value="">Traveling to</option>
-                <option value="Nigeria">Nigeria</option>
+                <option value="" disabled className="text-gray-500 italic">--Travelling To--</option>
+                <option value="UK">UK</option>
+                <option value="Luxemborg">Luxemborg</option>
+                <option value="Belarus">Belarus</option>
+                <option value="Norway">Norway</option>
+                {/* <option value="Traveling To" disabled className="text-gray-500 ">Traveling To (Not a valid selection)</option> */}
               </select>
               {errors.travellingTo && (
                 <p className="text-red-500 text-sm">{errors.travellingTo.message}</p>
